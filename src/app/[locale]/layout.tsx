@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Link } from '../../navigation'
+import { Link, usePathname } from '../../navigation'
 
 type Props = {
   children: ReactNode
@@ -10,6 +10,13 @@ export default async function LocaleLayout({
   children,
   params: { locale }
 }: Props) {
+  const pathname = usePathname()
+
+  const path = 'http://checkout/28283763'
+
+  if (pathname === '/checkout/[cartId]') {
+  }
+
   return (
     <html lang={locale}>
       <head>
@@ -17,8 +24,9 @@ export default async function LocaleLayout({
       </head>
       <body>
         {children}
-        {/* BUG: Where is "/checkout/[cartId]" dynamic pathname in href attribute? */}
-        <Link href='' />
+        {/* @ts-ignore */}
+        {/* BUG: How can i pass "checkout/123" to href attribute without @ts-ignore? */}
+        {/* <Link href={""} /> */}
       </body>
     </html>
   )
