@@ -1,12 +1,14 @@
-import createMiddleware from 'next-intl/middleware';
-import {locales, localePrefix, defaultLocale} from './navigation';
+import createMiddleware from 'next-intl/middleware'
+import { pathnames, locales, localePrefix } from './i18n.config'
 
 export default createMiddleware({
-  defaultLocale,
+  defaultLocale: 'en',
   locales,
-  localePrefix
-});
+  pathnames,
+  localePrefix,
+  localeDetection: false
+})
 
 export const config = {
-  matcher: ['/', '/(en)/:path*']
-};
+  matcher: ['/', '/(en)/:path*', '/checkout/(.+)*']
+}
